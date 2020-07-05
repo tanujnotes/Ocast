@@ -17,6 +17,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', '"https://listen-api.listennotes.com/api/v2/"'
+        buildConfigField 'String', 'LISTEN_NOTES_API_KEY', "$System.env.LISTEN_NOTES_API_KEY"
     }
 
     buildTypes {
