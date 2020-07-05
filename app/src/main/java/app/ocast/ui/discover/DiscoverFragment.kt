@@ -4,28 +4,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import app.ocast.R
+import app.ocast.utils.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DiscoverFragment : Fragment() {
 
-    private lateinit var discoverViewModel: DiscoverViewModel
+    private val discoverViewModel: DiscoverViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        discoverViewModel =
-            ViewModelProvider(this).get(DiscoverViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_discover, container, false)
-        val textView: TextView = root.findViewById(R.id.text_discover)
-        discoverViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        initObservers()
+        return inflater.inflate(R.layout.fragment_discover, container, false)
+    }
+
+    private fun initObservers() {
+        discoverViewModel.genres.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                }
+                Resource.Status.LOADING -> {
+                    Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
+                }
+                Resource.Status.ERROR -> {
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
         })
-        return root
     }
 }

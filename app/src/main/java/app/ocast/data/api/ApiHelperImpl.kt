@@ -1,11 +1,11 @@
 package app.ocast.data.api
 
-import app.ocast.data.model.Genre
+import app.ocast.data.model.GenreResponse
 import retrofit2.Response
 import javax.inject.Inject
 
 class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : ApiHelper {
 
-    override suspend fun getGenres(): Response<List<Genre>> = apiService.getGenres()
+    override suspend fun getGenres(): Response<GenreResponse> = apiService.getGenres()
 
 }
