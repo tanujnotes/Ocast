@@ -9,6 +9,10 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
+    dataBinding {
+        enabled = true
+    }
+
     // Add your api key in local.properties like this
     // listenNotesApiKey="your_api_key_from_listen_notes_dot_com"
     Properties properties = new Properties()

@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import app.ocast.R
+import androidx.recyclerview.widget.GridLayoutManager
+import app.ocast.data.model.GenreResponse
+import app.ocast.databinding.FragmentDiscoverBinding
 import app.ocast.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,21 +18,28 @@ import dagger.hilt.android.AndroidEntryPoint
 class DiscoverFragment : Fragment() {
 
     private val discoverViewModel: DiscoverViewModel by viewModels()
+    private lateinit var adapter: GenreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding = FragmentDiscoverBinding.inflate(inflater, container, false)
+
+        adapter = GenreAdapter()
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.recyclerView.adapter = adapter
+
         initObservers()
-        return inflater.inflate(R.layout.fragment_discover, container, false)
+        return binding.root
     }
 
     private fun initObservers() {
         discoverViewModel.genres.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
-                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                    it.data?.let { genres -> renderList(genres) }
                 }
                 Resource.Status.LOADING -> {
                     Toast.makeText(context, "Loading", Toast.LENGTH_SHORT).show()
@@ -40,5 +49,10 @@ class DiscoverFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun renderList(genres: GenreResponse) {
+        adapter.submitList(genres.results)
+        adapter.notifyDataSetChanged()
     }
 }
