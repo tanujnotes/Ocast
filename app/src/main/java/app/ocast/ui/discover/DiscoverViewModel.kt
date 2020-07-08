@@ -20,18 +20,18 @@ class DiscoverViewModel @ViewModelInject constructor(
     val genres: LiveData<Resource<GenreResponse>>
         get() = _genres
 
-    init {
-        fetchGenres()
-    }
+//    init {
+//        fetchGenres()
+//    }
 
-    private fun fetchGenres() {
+    fun fetchGenres(level: Int) {
         viewModelScope.launch {
             _genres.postValue(Resource.loading(null))
             if (!networkHelper.isNetworkConnected()) {
                 _genres.postValue(Resource.error("No Internet!", null))
                 return@launch
             }
-            genreRepository.getGenres().let {
+            genreRepository.getGenres(level).let {
                 if (it.isSuccessful)
                     _genres.postValue(Resource.success(it.body()))
                 else

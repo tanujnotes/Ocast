@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("genres")
+    @GET("genres") // level - 0 for all genres, 1 for top genres, default 1
     suspend fun getGenres(@Query("top_level_only") level: Int = 1): Response<GenreResponse>
 
 }

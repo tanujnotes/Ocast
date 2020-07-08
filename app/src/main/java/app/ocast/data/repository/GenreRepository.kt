@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GenreRepository @Inject constructor(private val apiHelper: ApiHelper) {
 
-    suspend fun getGenres() = apiHelper.getGenres()
+    suspend fun getGenres(level: Int) = apiHelper.getGenres(level)
 
 }

@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class ApiHelperImpl @Inject constructor(private val apiService: ApiService) : ApiHelper {
 
-    override suspend fun getGenres(): Response<GenreResponse> = apiService.getGenres()
+    override suspend fun getGenres(level: Int): Response<GenreResponse> = apiService.getGenres(level)
 
 }
