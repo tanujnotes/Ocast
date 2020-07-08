@@ -23,7 +23,5 @@ class MainActivity : AppCompatActivity() {
 //                R.id.navigation_home, R.id.navigation_discover, R.id.navigation_notifications))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        Log.d("TAG", System.getenv("LISTEN_NOTES_API_KEY").toString())
     }
 }

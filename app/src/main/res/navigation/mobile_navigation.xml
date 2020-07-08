@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_discover_to_genresFragment"
             app:destination="@id/genresFragment" />
+        <action
+            android:id="@+id/action_navigation_discover_to_podcastsFragment"
+            app:destination="@id/podcastsFragment" />
     </fragment>
 
     <fragment
@@ -29,5 +32,13 @@
     <fragment
         android:id="@+id/genresFragment"
         android:name="app.ocast.ui.genres.GenresFragment"
-        android:label="GenresFragment" />
+        android:label="GenresFragment" >
+        <action
+            android:id="@+id/action_genresFragment_to_podcastsFragment"
+            app:destination="@id/podcastsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/podcastsFragment"
+        android:name="app.ocast.ui.podcasts.PodcastsFragment"
+        android:label="PodcastsFragment" />
 </navigation>

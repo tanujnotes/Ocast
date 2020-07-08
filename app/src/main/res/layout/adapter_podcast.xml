@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="podcast"
+            type="app.ocast.data.model.Podcast" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:minHeight="80dp"
+        android:onClick="@{clickListener}"
+        app:cardBackgroundColor="@android:color/holo_blue_light"
+        app:cardCornerRadius="6dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@{podcast.title}"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </androidx.cardview.widget.CardView>
+</layout>

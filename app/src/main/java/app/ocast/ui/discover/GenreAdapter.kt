@@ -1,11 +1,16 @@
 package app.ocast.ui.discover
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.findFragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import app.ocast.R
 import app.ocast.data.model.Genre
 import app.ocast.databinding.AdapterGenreBinding
 
@@ -20,17 +25,16 @@ class GenreAdapter : ListAdapter<Genre, GenreAdapter.ViewHolder>(DiffCallback())
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val legoTheme = getItem(position)
+        val genre = getItem(position)
         holder.apply {
-            bind(createOnClickListener(legoTheme.id, legoTheme.name), legoTheme)
-            itemView.tag = legoTheme
+            bind(createOnClickListener(genre.id, genre.name), genre)
+            itemView.tag = genre
         }
     }
 
     private fun createOnClickListener(id: Int, name: String): View.OnClickListener {
         return View.OnClickListener {
-//            val direction = LegoThemeFragmentDirections.actionThemeFragmentToSetsFragment(id, name)
-//            it.findNavController().navigate(direction)
+            it.findNavController().navigate(R.id.action_navigation_discover_to_podcastsFragment)
         }
     }
 
