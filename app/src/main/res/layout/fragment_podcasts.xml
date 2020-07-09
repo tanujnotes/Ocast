@@ -6,6 +6,7 @@
         <variable
             name="genreName"
             type="String" />
+
     </data>
 
     <LinearLayout
@@ -18,10 +19,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="8dp"
             android:text="@{genreName}"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView

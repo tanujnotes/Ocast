@@ -1,5 +1,6 @@
 package app.ocast.ui.podcasts
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,13 +25,14 @@ class PodcastAdapter : ListAdapter<Podcast, PodcastAdapter.ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val podcast = getItem(position)
         holder.apply {
-            bind(createOnClickListener(podcast.id, podcast.title), podcast)
+            bind(createOnClickListener(podcast.id, podcast.title, podcast.image), podcast)
             itemView.tag = podcast
         }
     }
 
-    private fun createOnClickListener(id: String, name: String): View.OnClickListener {
+    private fun createOnClickListener(id: String, name: String, url: String): View.OnClickListener {
         return View.OnClickListener {
+            Log.d("TAG", name + " : " + url)
 //            it.findNavController().navigate(direction)
         }
     }
