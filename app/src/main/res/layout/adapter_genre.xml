@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="cardColor"
+            type="Integer" />
+
+        <variable
             name="clickListener"
             type="android.view.View.OnClickListener" />
 
@@ -18,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:minHeight="80dp"
-        app:cardCornerRadius="6dp"
         android:onClick="@{clickListener}"
-        app:cardBackgroundColor="@android:color/holo_blue_light">
+        app:cardBackgroundColor="@{cardColor}"
+        app:cardCornerRadius="6dp">
 
         <TextView
             android:id="@+id/name"

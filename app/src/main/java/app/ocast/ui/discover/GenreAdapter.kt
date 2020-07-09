@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.ocast.R
 import app.ocast.data.model.Genre
 import app.ocast.databinding.AdapterGenreBinding
+import app.ocast.utils.getRandomColor
 
 class GenreAdapter : ListAdapter<Genre, GenreAdapter.ViewHolder>(DiffCallback()) {
 
@@ -45,6 +46,7 @@ class GenreAdapter : ListAdapter<Genre, GenreAdapter.ViewHolder>(DiffCallback())
             binding.apply {
                 clickListener = listener
                 genre = item
+                cardColor = getRandomColor()
                 executePendingBindings()
             }
         }
