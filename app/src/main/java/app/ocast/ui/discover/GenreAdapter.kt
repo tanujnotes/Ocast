@@ -1,11 +1,9 @@
 package app.ocast.ui.discover
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -34,7 +32,8 @@ class GenreAdapter : ListAdapter<Genre, GenreAdapter.ViewHolder>(DiffCallback())
 
     private fun createOnClickListener(id: Int, name: String): View.OnClickListener {
         return View.OnClickListener {
-            it.findNavController().navigate(R.id.action_navigation_discover_to_podcastsFragment)
+            val bundle = bundleOf("genreId" to id, "genreName" to name)
+            it.findNavController().navigate(R.id.podcastsFragment, bundle)
         }
     }
 

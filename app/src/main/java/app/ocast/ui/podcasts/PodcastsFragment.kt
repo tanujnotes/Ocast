@@ -13,7 +13,6 @@ import app.ocast.data.model.PodcastResponse
 import app.ocast.databinding.FragmentPodcastsBinding
 import app.ocast.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_podcasts.*
 
 @AndroidEntryPoint
 class PodcastsFragment : Fragment() {
@@ -26,7 +25,8 @@ class PodcastsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentPodcastsBinding.inflate(inflater, container, false)
-        podcastsViewModel.fetchBestPodcasts("88", 1)
+        binding.genreName = arguments?.getString("genreName")
+        podcastsViewModel.fetchBestPodcasts(arguments?.getInt("genreId").toString(), 1)
 
         adapter = PodcastAdapter()
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)

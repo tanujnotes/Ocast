@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="genreName"
+            type="String" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,10 +16,10 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/podcastGenre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:text="@{genreName}"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
